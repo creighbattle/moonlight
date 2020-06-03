@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import firebase from 'firebase';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Home from './screens/Home';
+//import About from './screens/About';
+import SignIn from './screens/SignIn';
+import SignUp from './screens/SignUp';
+import UserPage from './screens/UserPage';
+
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyCkOMSteLO1p1BYcqxiPKJT_2nGMeffbzs",
+  authDomain: "testproject-e2f93.firebaseapp.com",
+  databaseURL: "https://testproject-e2f93.firebaseio.com",
+  projectId: "testproject-e2f93",
+  storageBucket: "testproject-e2f93.appspot.com",
+  messagingSenderId: "193495535383",
+  appId: "1:193495535383:web:aa4af8626bbef3f0877152"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+
+        <Switch>
+          <Route path="/" component={Home} exact />
+          {/* <Route path="/About" component={About} /> */}
+          <Route path="/SignIn" component={SignIn} />
+          <Route path="/SignUp" component={SignUp} />
+          <Route path="/User" component={UserPage} />
+        </Switch>
+
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
+
